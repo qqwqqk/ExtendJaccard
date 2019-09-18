@@ -9,12 +9,6 @@ Bipartite getBipartite(
   int number = -1
 );
 
-Bipartite pretreatmentBipartite(
-  string name, 
-  char intercept = 'A', 
-  int number = -1
-);
-
 Unipartite getUnipartite(
   string name, 
   char intercept = 'A', 
@@ -22,7 +16,15 @@ Unipartite getUnipartite(
   char nodetype = 'A'
 );
 
-Unipartite pretreatmentUnipartite(
+void printProgress(
+  int iterationNumber = 0, 
+  int communityNumber = 0, 
+  double modularity = 0.0
+);
+
+void printCommunity(
+  vector<double> modularityCache,
+  map<int,Node> nodeCache,
   string name, 
   char intercept = 'A', 
   int number = -1, 
