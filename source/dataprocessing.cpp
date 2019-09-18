@@ -162,7 +162,7 @@ void printCommunity(vector<double> modularityCache, map<int,Node> nodeCache,stri
   const string _intercept(1, intercept);
   const string _number = number > 0 ? to_string(number) : "0";
   const string _nodetype(1, nodetype);
-  const string resultpath = "dataset/resultdata/" + name + "_Result" + _nodetype + split + _intercept + _number + ".txt";
+  const string resultpath = "dataset/labeldata/" + name + "_Result" + _nodetype + split + _intercept + _number + ".txt";
 
   set<int> communityCache;
   //写入Bipartite，并输出到TXT文件
