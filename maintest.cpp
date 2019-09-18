@@ -7,9 +7,9 @@ int main(){
   string name = "test"; 
   int setnum = 20;
   int setmin = 20;
-  int setmax = 100;
+  int setmax = 80;
   int edgenum = 1000;
-  int probability = 90;
+  int probability = 80;
 
   generationBipartite(setnum, setmin, setmax, edgenum, probability);
 
