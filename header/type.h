@@ -9,7 +9,7 @@ using namespace std;
 
 struct Link{ 
   int community_a, community_b; 
-  double gravitycoefficient; 
+  double extendjaccard;
 };
 
 class Node{
