@@ -86,7 +86,7 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
   const string split = "_";
   const string str = to_string(setnum) +split+ to_string(setmin)+split+ to_string(setmax)+split + to_string(edgenum)+split + to_string(probability);
   const string fackpath = "dataset/metadata/Fakedata_" + str + ".txt";
-  const string labelpath = "dataset/tagdata/Fakedata_label_" + str + ".txt";
+  const string labelpath = "dataset/tagdata/Fakedata_tag_" + str + ".txt";
   int index = 0;
 
   ofstream outfile1(fackpath , ios::out);

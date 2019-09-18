@@ -9,7 +9,7 @@ int main(){
   int setmin = 30;
   int setmax = 50;
   int edgenum = 800;
-  int probability = 80;
+  int probability = 90;
 
   generationBipartite(setnum, setmin, setmax, edgenum, probability);
 
