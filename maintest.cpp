@@ -5,10 +5,10 @@ using namespace std;
 
 int main(){
   string name = "test"; 
-  int setnum = 10;
-  int setmin = 20;
-  int setmax = 80;
-  int edgenum = 1000;
+  int setnum = 20;
+  int setmin = 30;
+  int setmax = 50;
+  int edgenum = 700;
   int probability = 90;
 
   generationBipartite(setnum, setmin, setmax, edgenum, probability);
