@@ -1,0 +1,51 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/main.cpp",
+        "${workspaceFolder}/source/*.cpp",
+        "-o",
+        "${workspaceFolder}/compile/main.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true                          // 设为false可做到一个tasks.json配置多个编译指令，需要自己修改本文件，我这里不多提
+      },
+      "presentation": {
+        // Reveal the output only if unrecognized errors occur.
+        "reveal": "silent"
+      },
+      // Use the standard MS compiler pattern to detect errors, warnings and infos
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "compile of test",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/maintest.cpp",
+        "${workspaceFolder}/source/*.cpp",
+        "-o",
+        "${workspaceFolder}/compile/main.exe"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true                          // 设为false可做到一个tasks.json配置多个编译指令，需要自己修改本文件，我这里不多提
+      },
+      "presentation": {
+        // Reveal the output only if unrecognized errors occur.
+        "reveal": "silent"
+      },
+      // Use the standard MS compiler pattern to detect errors, warnings and infos
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}

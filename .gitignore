@@ -1,0 +1,9 @@
+.vscode/
+cache/
+compile/
+
+_sourcedata/
+metadata/
+
+netdata/
+tagdata/
