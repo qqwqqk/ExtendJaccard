@@ -45,11 +45,12 @@ vector<int> randomlist(int min, int max, int size){
 
 bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int probability){
   vector<vector<int>> networks;
+  int count = 0;
   for(int i=0 ; i < setnum; i++){
     vector<int> lists;
     int setsize = random(setmin, setmax);
     for(int j=0; j < setsize; j++){
-      lists.push_back( i * setsize + j);
+      lists.push_back( count++ );
     }
     networks.push_back(lists);
   }
@@ -57,22 +58,20 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
   vector<vector<int>> edges;
   for(int i=0; i<edgenum; i++){
     int size = randomsize();
-    int base = random(0, setnum-1);
+    int poss = random(1, 100);
 
     set<int> cache;
-    while(cache.size()<size){
-      int poss = random(1, 100);
-      if(poss < probability){
-        int length = networks[base].size();
+    if(poss < probability){
+      int base = random(0, setnum-1);
+      int length = networks[base].size();
+      while(cache.size()<size){
         int pos = random(0, length - 1);
         cache.insert(networks[base][pos]); 
       }
-      else {
-        int out = random(0, setnum-1);
-        while(out == base){ out = random(0, setnum - 1); }
-        int length = networks[out].size();
-        int pos = random(0, length - 1);
-        cache.insert(networks[out][pos]); 
+    } else {
+      while(cache.size()<size){
+        int item = random(0, count - 1);
+        cache.insert(item); 
       }
     }
 
