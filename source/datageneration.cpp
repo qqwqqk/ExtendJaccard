@@ -43,10 +43,11 @@ vector<int> randomlist(int min, int max, int size){
   return result;
 }
 
-bool generationBipartite(int setnum, int setsize, int edgenum, int probability){
+bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int probability){
   vector<vector<int>> networks;
   for(int i=0 ; i < setnum; i++){
     vector<int> lists;
+    int setsize = random(setmin, setmax);
     for(int j=0; j < setsize; j++){
       lists.push_back( i * setsize + j);
     }
@@ -61,11 +62,17 @@ bool generationBipartite(int setnum, int setsize, int edgenum, int probability){
     set<int> cache;
     while(cache.size()<size){
       int poss = random(1, 100);
-      if(poss < probability){ cache.insert(base * setsize + random(0, setsize)); }
+      if(poss < probability){
+        int length = networks[base].size();
+        int pos = random(0, length - 1);
+        cache.insert(networks[base][pos]); 
+      }
       else {
         int out = random(0, setnum-1);
         while(out == base){ out = random(0, setnum - 1); }
-        cache.insert(out * setsize + random(0, setsize));
+        int length = networks[out].size();
+        int pos = random(0, length - 1);
+        cache.insert(networks[out][pos]); 
       }
     }
 
@@ -78,7 +85,7 @@ bool generationBipartite(int setnum, int setsize, int edgenum, int probability){
   }
 
   const string split = "_";
-  const string str = to_string(setnum) +split+ to_string(setsize)+split + to_string(edgenum)+split + to_string(probability);
+  const string str = to_string(setnum) +split+ to_string(setmin)+split+ to_string(setmax)+split + to_string(edgenum)+split + to_string(probability);
   const string fackpath = "dataset/metadata/Fakedata_" + str + ".txt";
   const string labelpath = "dataset/tagdata/Fakedata_label_" + str + ".txt";
   int index = 0;
@@ -100,8 +107,8 @@ bool generationBipartite(int setnum, int setsize, int edgenum, int probability){
   if(!outfile2){ cout << labelpath <<" open error!"<<endl; exit(1); } 
   index = 0;
   for(int i=0 ; i < setnum; i++){
-    for(int j=0; j < setsize; j++){
-      outfile2 << networks[i][j] << ' ' << i << '\n';
+    for(vector<int>::iterator iter = networks[i].begin(); iter != networks[i].end(); iter++){
+      outfile2 << *iter << ' ' << i << '\n';
     }
   }
   outfile2.close();

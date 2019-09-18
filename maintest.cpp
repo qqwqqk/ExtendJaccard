@@ -6,13 +6,14 @@ using namespace std;
 int main(){
   string name = "test"; 
   int setnum = 4;
-  int setsize = 20;
-  int edgenum = 60;
+  int setmin = 20;
+  int setmax = 30;
+  int edgenum = 80;
   int probability = 80;
 
-  generationBipartite(setnum, setsize, edgenum, probability);
+  generationBipartite(setnum, setmin, setmax, edgenum, probability);
 
-  cout<<"generation network\t" << setnum <<'\t'<< setsize<<'\t'<< edgenum <<'\t'<< probability << "\tsuccess" << endl;
+  cout<<"generation network\t" << setnum <<'\t'<< setmin<<'\t' << setmax <<'\t'<< edgenum <<'\t'<< probability << "\tsuccess" << endl;
 
   return 0;
 }
