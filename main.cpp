@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
- string name = "Fakedata_4_20_30_80_80";
+ string name = "Fakedata_20_30_50_800_90";
   char intercept = 'E'; 
   int number = 10000;
   char nodetype = 'A';
