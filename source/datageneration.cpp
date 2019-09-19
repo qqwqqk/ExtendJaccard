@@ -24,8 +24,8 @@ int random(int min, int max){
 int randomsize(){
   int size = 0;
   int seed = random(0, 9);
-  if(seed < 5 ){ size = 2;}
-  else if(seed < 8){ size = 3; }
+  if(seed < 4 ){ size = 2;}
+  else if(seed < 7){ size = 3; }
   else if(seed < 9){ size = 4; }
   else {size = 5;}
   return size;
