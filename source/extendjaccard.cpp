@@ -13,7 +13,11 @@ double calculationExtendJaccard(vector<Edge> edges, char nodetype, int item_i, i
     if(node_id == item_i){ set_i.insert(node_tag); set_ij.insert(node_tag); }
     if(node_id == item_j){ set_j.insert(node_tag); set_ij.insert(node_tag); }
   }
-  double extendjaccard = 1.0 * ( set_i.size() + set_j.size() - set_ij.size()) / ( set_i.size() + set_j.size() );
+  int M11 = set_i.size() + set_j.size() - set_ij.size();
+  int M10 = set_i.size() - M11;
+  int M01 = set_j.size() - M11;
+  
+  double extendjaccard = 1.0 * M11 / (M11 + M10 + M01);
   return extendjaccard;
 }
 
@@ -47,21 +51,23 @@ double calculationExtendJaccard(map<int,Node> nodes, vector<Edge> edges, char no
   for(set<int>::iterator iter_i = sub_i.begin(); iter_i != sub_i.end(); iter_i++){
     const int item_id = *iter_i;
     if(sub_j.find(item_id) != sub_j.end()){
+      denominatorList.push_back(1.0 * sub_i.count(item_id) / communitynumber_i);
+    } else {
       double sub_item = 1.0 * sqrt(1.0 * sub_i.count(item_id) / communitynumber_i * sub_j.count(item_id) / communitynumber_j);
       moleculeList.push_back(sub_item);
     }
-    denominatorList.push_back(1.0 * sub_i.count(item_id) / communitynumber_i);
   }
   for(set<int>::iterator iter_j = sub_j.begin(); iter_j != sub_j.end(); iter_j++){
     const int item_id = *iter_j;
-    denominatorList.push_back(1.0 * sub_j.count(item_id) / communitynumber_j);
+    if(sub_i.find(item_id) == sub_i.end()){
+      denominatorList.push_back(1.0 * sub_j.count(item_id) / communitynumber_j);
+    }
   }
 
   //calculation community
-  double molecule = accumulate(moleculeList.begin(), moleculeList.end(), 0.0);
-  double denominator = accumulate(denominatorList.begin(), denominatorList.end(), 0.0);
-  //double factor = 1.0 * ( sub_i.size() + sub_j.size() - sub_ij.size()) / ( sub_ij.size() );
-  double extendjaccard = molecule / denominator;
+  double M11 = accumulate(moleculeList.begin(), moleculeList.end(), 0.0);
+  double M10_M01 = accumulate(denominatorList.begin(), denominatorList.end(), 0.0);
+  double extendjaccard = M11 / (M10_M01 + M11);
 
   return extendjaccard;
 }
