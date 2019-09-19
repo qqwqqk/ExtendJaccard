@@ -4,15 +4,14 @@
 using namespace std;
 
 int main(){
-  string name = "test"; 
   int nodenum = 800;
   int edgenum = 800;
   int setmin = 30;
   int setmax = 50;
   int probability = 10;
 
-  printf("please input nodenum edgenum setmin setmax and probability: \n");
-  scanf("%d %d %d %d %d", &nodenum, &edgenum, &setmin, &setmax, &probability);
+  cout << "please input nodenum edgenum setmin setmax and probability:" << endl;
+  cin >> nodenum >> edgenum >> setmin >> setmax >> probability;
 
   generationBipartite(nodenum, edgenum, setmin, setmax, probability);
 
