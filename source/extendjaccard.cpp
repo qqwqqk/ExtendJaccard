@@ -58,7 +58,7 @@ double calculationExtendJaccard(map<int,Node> nodes, vector<Edge> edges, char no
   vector<double> moleculeList, denominatorList;
   for(map<int, int>::iterator iter_i = sub_i.begin(); iter_i != sub_i.end(); iter_i++){
     const int item_id = iter_i->first;
-    if(sub_j.find(item_id) != sub_j.end()){
+    if(sub_j.find(item_id) == sub_j.end()){
       denominatorList.push_back(1.0 * sub_i[item_id] / communitynumber_i);
     } else {
       double sub_item = 1.0 * sqrt(1.0 * sub_i[item_id] / communitynumber_i * sub_j[item_id] / communitynumber_j);
