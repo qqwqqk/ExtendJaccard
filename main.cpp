@@ -6,10 +6,10 @@ using namespace std;
 
 int main()
 {
- string name = "Fakedata_20_30_50_800_96";
   char intercept = 'E'; 
   int number = 10000;
   char nodetype = 'A';
+  string name = "Fakedata_800_800_10_100_10";
 
   const int termination = 20;            //最大迭代次数
 
