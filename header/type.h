@@ -7,11 +7,6 @@
 #include <algorithm>
 using namespace std;
 
-struct Link{ 
-  int community_a, community_b; 
-  double gravitycoefficient; 
-};
-
 class Node{
   protected:
     int _id;

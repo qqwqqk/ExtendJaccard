@@ -5,15 +5,18 @@ using namespace std;
 
 int main(){
   string name = "test"; 
-  int setnum = 20;
+  int nodenum = 800;
+  int edgenum = 800;
   int setmin = 30;
   int setmax = 50;
-  int edgenum = 800;
-  int probability = 90;
+  int probability = 10;
 
-  generationBipartite(setnum, setmin, setmax, edgenum, probability);
+  printf("please input nodenum edgenum setmin setmax and probability: \n");
+  scanf("%d %d %d %d %d", &nodenum, &edgenum, &setmin, &setmax, &probability);
 
-  cout<<"generation network\t" << setnum <<'\t'<< setmin<<'\t' << setmax <<'\t'<< edgenum <<'\t'<< probability << "\tsuccess" << endl;
+  generationBipartite(nodenum, edgenum, setmin, setmax, probability);
+
+  cout<<"generation network\t" << nodenum <<'\t' << edgenum <<'\t'<< setmin<<'\t' << setmax <<'\t'<< probability << "\tsuccess" << endl;
 
   return 0;
 }

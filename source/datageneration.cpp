@@ -43,16 +43,21 @@ vector<int> randomlist(int min, int max, int size){
   return result;
 }
 
-bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int probability){
+bool generationBipartite(int nodenum, int edgenum, int setmin, int setmax, int probability){
   vector<vector<int>> networks;
   int count = 0;
-  for(int i=0 ; i < setnum; i++){
+  int setnum = 0;
+  while(1){
     vector<int> lists;
     int setsize = random(setmin, setmax);
-    for(int j=0; j < setsize; j++){
-      lists.push_back( count++ );
+    if(count + setsize > nodenum){ break; }
+    else {
+      for(int i=0; i<setsize; i++){
+        lists.push_back(count++);
+      }
+      networks.push_back(lists);
+      setnum++;
     }
-    networks.push_back(lists);
   }
 
   vector<vector<int>> edges;
@@ -61,7 +66,7 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
     int poss = random(1, 100);
 
     set<int> cache;
-    if(poss < probability){
+    if(poss > probability){
       int base = random(0, setnum-1);
       int length = networks[base].size();
       while(cache.size()<size){
@@ -84,9 +89,9 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
   }
 
   const string split = "_";
-  const string str = to_string(setnum) +split+ to_string(setmin)+split+ to_string(setmax)+split + to_string(edgenum)+split + to_string(probability);
+  const string str = to_string(nodenum) +split+ to_string(edgenum)+split+ to_string(setmin)+split+ to_string(setmax)+split + to_string(probability);
   const string fackpath = "dataset/metadata/Fakedata_" + str + ".txt";
-  const string labelpath = "dataset/tagdata/Fakedata_tag_" + str + ".txt";
+  const string tagpath = "dataset/tagdata/Fakedata_tag_" + str + ".txt";
   int index = 0;
 
   ofstream outfile1(fackpath , ios::out);
@@ -101,9 +106,10 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
     }
   }
   outfile1.close();
+  cout << "links number: "<< index <<endl;
 
-  ofstream outfile2(labelpath , ios::out);
-  if(!outfile2){ cout << labelpath <<" open error!"<<endl; exit(1); } 
+  ofstream outfile2(tagpath , ios::out);
+  if(!outfile2){ cout << tagpath <<" open error!"<<endl; exit(1); } 
   index = 0;
   for(int i=0 ; i < setnum; i++){
     for(vector<int>::iterator iter = networks[i].begin(); iter != networks[i].end(); iter++){
@@ -111,6 +117,7 @@ bool generationBipartite(int setnum, int setmin, int setmax, int edgenum, int pr
     }
   }
   outfile2.close();
+  cout << "community number: "<< setnum <<endl;
 
   return false;
 }
