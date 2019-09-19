@@ -9,7 +9,7 @@ int main()
   char intercept = 'E'; 
   int number = 10000;
   char nodetype = 'A';
-  string name = "Fakedata_20_30_50_800_96";
+  string name = "Fakedata_800_800_10_90_10";
 
   cout << "please input intercept type, max number, nodetype and filename:"<<endl;
   cin >> intercept >> number >> nodetype >> name;

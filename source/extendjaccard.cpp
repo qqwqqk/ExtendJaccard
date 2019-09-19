@@ -51,23 +51,28 @@ double calculationExtendJaccard(map<int,Node> nodes, vector<Edge> edges, char no
   for(set<int>::iterator iter_i = sub_i.begin(); iter_i != sub_i.end(); iter_i++){
     const int item_id = *iter_i;
     if(sub_j.find(item_id) != sub_j.end()){
-      denominatorList.push_back(1.0 * sub_i.count(item_id) / communitynumber_i);
+      // denominatorList.push_back(1.0 * sub_i.count(item_id) / communitynumber_i);
+      denominatorList.push_back(1);
     } else {
-      double sub_item = 1.0 * sqrt(1.0 * sub_i.count(item_id) / communitynumber_i * sub_j.count(item_id) / communitynumber_j);
-      moleculeList.push_back(sub_item);
+      // double sub_item = 1.0 * sqrt(1.0 * sub_i.count(item_id) / communitynumber_i * sub_j.count(item_id) / communitynumber_j);
+      // moleculeList.push_back(sub_item);
+      moleculeList.push_back(1);
     }
   }
   for(set<int>::iterator iter_j = sub_j.begin(); iter_j != sub_j.end(); iter_j++){
     const int item_id = *iter_j;
     if(sub_i.find(item_id) == sub_i.end()){
-      denominatorList.push_back(1.0 * sub_j.count(item_id) / communitynumber_j);
+      // denominatorList.push_back(1.0 * sub_j.count(item_id) / communitynumber_j);
+      denominatorList.push_back(1);
     }
   }
 
   //calculation community
-  double M11 = accumulate(moleculeList.begin(), moleculeList.end(), 0.0);
-  double M10_M01 = accumulate(denominatorList.begin(), denominatorList.end(), 0.0);
-  double extendjaccard = M11 / (M10_M01 + M11);
+  // double M11 = accumulate(moleculeList.begin(), moleculeList.end(), 0.0);
+  // double M10_M01 = accumulate(denominatorList.begin(), denominatorList.end(), 0.0);
+  double M11 = moleculeList.size();
+  double M10_M01 = denominatorList.size();
+  double extendjaccard = 1.0 *  M11 / (M10_M01 + M11);
 
   return extendjaccard;
 }
