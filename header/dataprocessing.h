@@ -16,6 +16,10 @@ Unipartite getUnipartite(
   char nodetype = 'A'
 );
 
+vector<vector<int>> getCommunityResult(
+  string filename = " "
+);
+
 void printProgress(
   int iterationNumber = 0, 
   int communityNumber = 0, 
