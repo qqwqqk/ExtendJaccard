@@ -4,10 +4,10 @@
 using namespace std;
 
 int main(){
-  int nodenum = 800;
-  int edgenum = 800;
-  int setmin = 30;
-  int setmax = 50;
+  int nodenum = 1000;
+  int edgenum = 500;
+  int setmin = 10;
+  int setmax = 100;
   int probability = 10;
 
   cout << "please input nodenum edgenum setmin setmax and probability:" << endl;

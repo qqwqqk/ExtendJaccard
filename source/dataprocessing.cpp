@@ -319,9 +319,9 @@ Bipartite pretreatmentBipartite(string name, char intercept, int number ){
   }
 
   //验证连通情况
-  //cout << "NodeCacheA\t" << nodeCacheA.size() << endl;
-  //cout << "NodeCacheB\t" << nodeCacheB.size() << endl;
-  //cout << "EdgeCache\t" << edgeCache.size() << endl << endl;
+  cout << "NodeCacheA\t" << nodeCacheA.size() << endl;
+  cout << "NodeCacheB\t" << nodeCacheB.size() << endl;
+  cout << "EdgeCache\t" << edgeCache.size() << endl << endl;
 
   //重新排序
   if(false){
